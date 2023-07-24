@@ -1,9 +1,9 @@
-const Page = () => {
+const App = () => {
   return (
     <>
-      Netflix Clone
+      <h1 className='text-2xl text-white'>Netflix Clone</h1>
     </>
   );
 };
 
-export default Page;
+export default App;
