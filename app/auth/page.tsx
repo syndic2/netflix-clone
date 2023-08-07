@@ -1,7 +1,10 @@
 "use client";
 
+import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
-import { useState, useCallback, MouseEventHandler } from 'react';
+import { useState, useCallback } from 'react';
+import { FcGoogle } from 'react-icons/fc';
+import { FaGithub } from 'react-icons/fa';
 import axios, { AxiosError } from 'axios';
 
 import { Response } from '../api/common/response';
@@ -14,6 +17,8 @@ enum AUTH_TYPE {
 }
 
 const Auth = () => {
+  const router = useRouter();
+
   const [name, setName] = useState<string | undefined>();
   const [email, setEmail] = useState<string | undefined>();
   const [password, setPassword] = useState<string | undefined>();
@@ -42,16 +47,17 @@ const Auth = () => {
     event.preventDefault();
 
     try {
-      await signIn('credentials', {
-        email,
-        password,
-        callbackUrl: '/',
-        redirect: true
-      });
+      const signInResult = await signIn('credentials', { email, password, redirect: false });
+      if (signInResult?.error) {
+        alert(signInResult.error);
+        return;
+      }
+
+      router.push('/profile');
     } catch (error: any) {
       console.error(error);
     }
-  }, [email, password]);
+  }, [email, password, router]);
 
   const onRegisterClick = useCallback(async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -71,6 +77,14 @@ const Auth = () => {
     }
   }, [name, email, password]);
 
+  // const onGoogleSignInClick = useCallback(async () => {
+  //   await signIn('google', { callbackUrl: '/profile' });
+  // }, []);
+
+  // const onGithubSignInClick = useCallback(async () => {
+  //   await signIn('github', { callbackUrl: '/profile' });
+  // }, []);
+
   return (
     <div className="relative w-full h-full bg-[url('/assets/images/hero.jpg')]">
       <div className="bg-black w-full lg:bg-opacity-50">
@@ -78,13 +92,18 @@ const Auth = () => {
         <nav className="px-12 py-5">
           <img src="/assets/images/logo.png" alt="" className="h-12" />
         </nav>
+        {/* Navbar */}
 
         {/* Content */}
         <div className="flex justify-center">
           <div className="self-center bg-black bg-opacity-70 mt-2 px-16 py-16 lg:w-2/5 lg:max-w-md rounded-md">
+            {/* Title */}
             <h2 className="text-white text-4xl mb-8 font-semibold">
               {isLoginVariant ? 'Sign In' : 'Register'}
             </h2>
+            {/* Title */}
+
+            {/* Input */}
             <div className="flex flex-col gap-4">
               {!isLoginVariant ? (
                 <Input
@@ -110,20 +129,62 @@ const Auth = () => {
                 onChange={onPasswordChange}
               />
             </div>
+            {/* Input */}
+
+            {/* Action Button */}
             <button
               onClick={isLoginVariant ? onLoginClick : onRegisterClick}
               className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition"
             >
               {isLoginVariant ? 'Login' : 'Sign Up'}
             </button>
+            <div className="flex justify-center items-center gap-4 mt-8">
+              <div
+                // onClick={onGoogleSignInClick}
+                className="
+                w-10
+                h-10
+                bg-white
+                rounded-full
+                flex
+                items-center
+                justify-center
+                cursor-pointer
+                hover:opacity-80
+                transition
+              ">
+                <FcGoogle size={30} />
+              </div>
+              <div
+                // onClick={onGithubSignInClick}
+                className="
+                w-10
+                h-10
+                bg-white
+                rounded-full
+                flex
+                items-center
+                justify-center
+                cursor-pointer
+                hover:opacity-80
+                transition
+              ">
+                <FaGithub size={30} />
+              </div>
+            </div>
+            {/* Action Button */}
+
+            {/* Toggle Variant Button */}
             <p className="text-neutral-500 mt-12">
               {isLoginVariant ? 'First time using Netflix?' : 'Already have an account?'}
               <span onClick={onToggleVariant} className="text-white ml-1 hover:underline cursor-pointer">
                 {isLoginVariant ? 'Create an account' : 'Login'}
               </span>
             </p>
+            {/* Toggle Variant Button */}
           </div>
         </div>
+        {/* Content */}
       </div>
     </div>
   );
