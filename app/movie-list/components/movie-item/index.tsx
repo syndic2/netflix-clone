@@ -2,6 +2,7 @@ import React from 'react';
 import { BsFillPlayFill } from 'react-icons/bs';
 
 import { GetMoviesRes } from '../../../api/movies/contracts/get-movies.res';
+import FavoriteButton from '@/app/components/favorite-button';
 
 interface MovieItemProps {
   data?: GetMoviesRes;
@@ -97,6 +98,7 @@ const MovieItem = (props: MovieItemProps) => {
                 className="text-black"
               />
             </div>
+            <FavoriteButton movieId={data?.id} />
           </div>
           {/* Action Buttons */}
 

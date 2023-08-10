@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import bcrypt from 'bcrypt';
 
 import prismaDb from '../../../lib/prisma-db';
@@ -40,7 +40,7 @@ const validate = (data: RegisterBody): Response => {
   };
 };
 
-export const POST = async (request: Request): Promise<NextResponse<Response>> => {
+export const POST = async (request: NextRequest): Promise<NextResponse<Response>> => {
   try {
     const body: RegisterBody = await request.json();
     const { name, email, password } = body;

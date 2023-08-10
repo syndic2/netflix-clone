@@ -2,11 +2,12 @@ import React, { useCallback } from 'react';
 import { signOut } from 'next-auth/react';
 
 interface AccountMenuProps {
+  name: string;
   visible: boolean;
 }
 
 const AccountMenu: React.FC<AccountMenuProps> = (props: AccountMenuProps) => {
-  const { visible } = props;
+  const { name, visible } = props;
 
   const onSignOutClick = useCallback(async () => {
     await signOut({ callbackUrl: '/', redirect: true });
@@ -18,7 +19,7 @@ const AccountMenu: React.FC<AccountMenuProps> = (props: AccountMenuProps) => {
         <div className="px-3 group/item flex flex-row gap-3 items-center w-full">
           <img src="/assets/images/default-red.png" alt="" className="w-8 rounded-md" />
           <p className="text-white text-sm group-hover/item:underline">
-            Username
+            {name}
           </p>
         </div>
         <hr className="bg-gray-600 border-0 h-px my-4" />

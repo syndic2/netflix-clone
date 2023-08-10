@@ -24,7 +24,8 @@ const serverAuth = async (): Promise<ServerAuthResponse> => {
       ...currentUser.id && { id: currentUser.id },
       ...currentUser.name && { name: currentUser.name },
       ...currentUser.email && { email: currentUser.email },
-      ...currentUser.image && { image: currentUser.image }
+      ...currentUser.image && { image: currentUser.image },
+      ...currentUser.favoriteIds && { favorite_ids: currentUser.favoriteIds }
     }
   };
 };

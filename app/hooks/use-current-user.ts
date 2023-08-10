@@ -1,11 +1,10 @@
 import useSWR from 'swr';
 
 import fetcher from '../lib/fetcher';
-import { Response } from '../api/common/response';
-import { GetCurrentUserRes } from '../api/current/contracts/get-current-user.res';
+import { GetCurrentUserRes } from '../api/users/current/contracts/get-current-user.res';
 
 const useCurrentUser = () => {
-  const { data: res, error, isLoading, mutate } = useSWR<Response>('/api/current', fetcher);
+  const { data: res, error, isLoading, mutate } = useSWR('/api/users/current', fetcher);
 
   return {
     data: res?.data as GetCurrentUserRes | undefined,

@@ -3,4 +3,5 @@ export interface GetCurrentUserRes {
   name?: string;
   email?: string;
   image?: string;
+  favorite_ids?: string[];
 }

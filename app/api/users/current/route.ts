@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import serverAuth from '../../lib/server-auth';
-import { Response } from '../common/response';
+import serverAuth from '../../../lib/server-auth';
+import { Response } from '../../common/response';
 
 export const GET = async (_: NextRequest): Promise<NextResponse<Response>> => {
   try {

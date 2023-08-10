@@ -1,11 +1,10 @@
 import useSWR from 'swr';
 
 import fetcher from '../lib/fetcher';
-import { Response } from '../api/common/response';
-import { GetRandomMovieRes } from '../api/movies/random-movie/contracts/get-random-movie.res';
+import { GetRandomMovieRes } from '../api/movies/random/contracts/get-random-movie.res';
 
 const useBillBoard = () => {
-  const { data: res, error, isLoading } = useSWR<Response>('/api/movies/random-movie', fetcher, {
+  const { data: res, error, isLoading } = useSWR('/api/movies/random', fetcher, {
     revalidateIfStale: false,
     revalidateOnFocus: false,
     revalidateOnReconnect: false
