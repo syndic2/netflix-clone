@@ -1,12 +1,12 @@
 import React, { useMemo, useCallback } from 'react';
-import axios from 'axios';
 import { AiOutlinePlus, AiOutlineCheck } from 'react-icons/ai';
+import axios from 'axios';
 
 import { Response } from '../../api/common/response';
 import { GetCurrentUserRes } from '@/app/api/users/current/contracts/get-current-user.res';
 import { AddFavoriteMovieBody } from '@/app/api/movies/favorites/contracts/add-favorite-movie.body';
 import useCurrentUser from '../../hooks/use-current-user';
-import useFavorites from '../../hooks/user-favorites';
+import useFavorites from '../../hooks/use-favorites';
 
 interface FavoriteButtonProps {
   movieId?: string;

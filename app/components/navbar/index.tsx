@@ -1,21 +1,13 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { BsChevronDown, BsSearch, BsBell } from 'react-icons/bs';
 
-import { GetCurrentUserRes } from '@/app/api/users/current/contracts/get-current-user.res';
-
 import AccountMenu from '../account-menu';
 import MobileMenu from '../mobile-menu';
 import NavbarItem from './navbar-item';
 
 const TOP_OFFSET = 66;
 
-interface NavbarProps {
-  currentUser?: GetCurrentUserRes;
-}
-
-const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
-  const { currentUser } = props;
-
+const Navbar: React.FC = () => {
   const [isShowMobileMenu, setIsShowMobileMenu] = useState<boolean>(false);
   const [isShowAccountMenu, setIsShowAccountMenu] = useState<boolean>(false);
   const [isShowBackground, setIsShowBackground] = useState<boolean>(false);
@@ -99,7 +91,6 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
             </div>
             <BsChevronDown className={`text-white transition ${isShowAccountMenu ? 'rotate-180' : 'rotate-0'}`} />
             <AccountMenu
-              name={currentUser?.name || '-'}
               visible={isShowAccountMenu}
             />
           </div>

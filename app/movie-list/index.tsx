@@ -5,12 +5,14 @@ import { GetMoviesRes } from '../api/movies/contracts/get-movies.res';
 import MovieItem from './components/movie-item';
 
 interface MovieListProps {
+  itemKeyName: string;
   title: string;
   data: GetMoviesRes[];
 }
 
 const MovieList: React.FC<MovieListProps> = (props: MovieListProps) => {
   const {
+    itemKeyName,
     title,
     data
   } = props;
@@ -25,7 +27,7 @@ const MovieList: React.FC<MovieListProps> = (props: MovieListProps) => {
           {data.map(movie => (
             <div className="text-white">
               <MovieItem
-                key={`movie-${movie.id}`}
+                key={`${itemKeyName}-${movie.id}`}
                 data={movie}
               />
             </div>

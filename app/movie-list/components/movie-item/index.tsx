@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 import { BsFillPlayFill } from 'react-icons/bs';
+import { BiChevronDown } from 'react-icons/bi';
 
 import { GetMoviesRes } from '../../../api/movies/contracts/get-movies.res';
-import FavoriteButton from '@/app/components/favorite-button';
+import useInfoModal from '../../../hooks/user-info-modal';
+import FavoriteButton from '../../../components/favorite-button';
 
 interface MovieItemProps {
   data?: GetMoviesRes;
@@ -10,6 +13,16 @@ interface MovieItemProps {
 
 const MovieItem = (props: MovieItemProps) => {
   const { data } = props;
+  const router = useRouter();
+  const { openModal } = useInfoModal();
+
+  const onPlayClick = useCallback(() => {
+    router.push(`/watch/${data?.id}`);
+  }, [data?.id]);
+
+  const onInfoClick = useCallback(() => {
+    openModal(data?.id);
+  }, [data?.id, openModal]);
 
   return (
     <div className="group bg-zinc-900 col-span relative h-[12vw]">
@@ -77,7 +90,7 @@ const MovieItem = (props: MovieItemProps) => {
           {/* Action Buttons */}
           <div className="flex items-center gap-3">
             <div
-              onClick={() => { }}
+              onClick={onPlayClick}
               className="
                 cursor-pointer
                 w-6
@@ -99,6 +112,30 @@ const MovieItem = (props: MovieItemProps) => {
               />
             </div>
             <FavoriteButton movieId={data?.id} />
+            <div
+              onClick={onInfoClick}
+              className="
+                cursor-pointer
+                ml-auto
+                group/item
+                w-6
+                h-6
+                lg:w-10
+                lg:h-10
+                border-white
+                border-2
+                rounded-full
+                flex
+                justify-center
+                items-center
+                hover:border-neutral-300
+              "
+            >
+              <BiChevronDown
+                size={30}
+                className="text-white group-hover/item:text-neutral-300 w-4"
+              />
+            </div>
           </div>
           {/* Action Buttons */}
 

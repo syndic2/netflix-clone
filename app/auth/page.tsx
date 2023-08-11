@@ -1,8 +1,8 @@
 "use client";
 
+import React, { useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
-import { useState, useCallback } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 import axios, { AxiosError } from 'axios';
@@ -16,7 +16,7 @@ enum AUTH_TYPE {
   REGISTER = "REGISTER"
 }
 
-const Auth = () => {
+const Auth: React.FC = () => {
   const router = useRouter();
 
   const [name, setName] = useState<string | undefined>();

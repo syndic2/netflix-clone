@@ -1,10 +1,11 @@
 "use client";
 
+import React, { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import { useCallback } from 'react';
+
 import useCurrentUser from '../hooks/use-current-user';
 
-const Profile = () => {
+const Profile: React.FC = () => {
   const router = useRouter();
   const { data: user } = useCurrentUser();
 

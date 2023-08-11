@@ -1,6 +1,6 @@
 import useSWR from 'swr';
-import fetcher from '../lib/fetcher';
 
+import fetcher from '../lib/fetcher';
 import { GetFavoriteMoviesRes } from '../api/movies/favorites/contracts/get-favorite-movies.res';
 
 const useFavorites = () => {
