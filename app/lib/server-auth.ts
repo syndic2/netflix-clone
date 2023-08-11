@@ -2,7 +2,7 @@ import { getServerSession } from 'next-auth';
 
 import prismaDb from './prisma-db';
 import { authOptions } from '../api/auth/[...nextauth]/route';
-import { GetCurrentUserRes } from '../api/current/contracts/get-current-user.res';
+import { GetCurrentUserRes } from '../api/users/current/contracts/get-current-user.res';
 
 interface ServerAuthResponse {
   currentUser: GetCurrentUserRes;

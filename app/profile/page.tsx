@@ -1,13 +1,21 @@
 "use client";
 
 import React, { useCallback } from 'react';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 import useCurrentUser from '../hooks/use-current-user';
 
 const Profile: React.FC = () => {
   const router = useRouter();
   const { data: user } = useCurrentUser();
+
+  useSession({
+    required: true,
+    onUnauthenticated: () => {
+      redirect('/auth');
+    }
+  });
 
   const onSelectUserClick = useCallback(() => {
     router.push('/');

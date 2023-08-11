@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useCallback } from 'react';
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
+import { useSession } from 'next-auth/react';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 import useMovie from '../../hooks/use-movie';
@@ -16,6 +17,13 @@ const WatchMovie: React.FC<WatchMovieProps> = (props: WatchMovieProps) => {
   const { params: { movieId } } = props;
   const router = useRouter();
   const { data: movie } = useMovie(movieId);
+
+  useSession({
+    required: true,
+    onUnauthenticated: () => {
+      redirect('/auth');
+    }
+  });
 
   const onBackClick = useCallback(() => {
     router.push('/');

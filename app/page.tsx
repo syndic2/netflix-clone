@@ -1,5 +1,8 @@
 "use client";
 
+import { redirect } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+
 import useMovies from './hooks/use-movies';
 import useFavorites from './hooks/use-favorites';
 import useInfoModal from './hooks/user-info-modal';
@@ -10,6 +13,13 @@ import MovieList from './components/movie-list';
 import InfoModal from './components/info-modal';
 
 const App = () => {
+  useSession({
+    required: true,
+    onUnauthenticated: () => {
+      redirect('/auth');
+    }
+  });
+
   const { data: movies = [] } = useMovies();
   const { data: favoriteMovies = [] } = useFavorites();
   const { isOpen, closeModal } = useInfoModal();

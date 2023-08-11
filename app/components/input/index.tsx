@@ -22,7 +22,7 @@ const Input: React.FC<InputProps> = (props: InputProps) => {
       <input
         id={id}
         type={type}
-        value={value}
+        value={value || ''}
         placeholder=" "
         onChange={onChange}
         className="
