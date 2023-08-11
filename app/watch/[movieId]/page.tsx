@@ -19,7 +19,7 @@ const WatchMovie: React.FC<WatchMovieProps> = (props: WatchMovieProps) => {
 
   const onBackClick = useCallback(() => {
     router.push('/');
-  }, []);
+  }, [router]);
 
   return (
     <div className="h-screen w-screen bg-black">

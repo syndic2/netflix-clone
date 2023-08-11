@@ -12,7 +12,7 @@ const PlayButton: React.FC<PlayButtonProps> = (props: PlayButtonProps) => {
 
   const onPlayClick = useCallback(() => {
     router.push(`/watch/${movieId}`);
-  }, [movieId]);
+  }, [movieId, router]);
 
   return (
     <button

@@ -22,7 +22,7 @@ const Navbar: React.FC = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [handleScroll]);
 
   const onToggleMobileMenu = useCallback(() => {
     setIsShowMobileMenu(prevState => !prevState);

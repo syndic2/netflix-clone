@@ -1,7 +1,7 @@
 import React from 'react';
 import { isEmpty } from 'lodash';
 
-import { GetMoviesRes } from '../api/movies/contracts/get-movies.res';
+import { GetMoviesRes } from '../../api/movies/contracts/get-movies.res';
 import MovieItem from './components/movie-item';
 
 interface MovieListProps {
@@ -25,11 +25,11 @@ const MovieList: React.FC<MovieListProps> = (props: MovieListProps) => {
         </p>
         <div className="grid grid-cols-4 gap-2">
           {data.map(movie => (
-            <div className="text-white">
-              <MovieItem
-                key={`${itemKeyName}-${movie.id}`}
-                data={movie}
-              />
+            <div
+              key={`${itemKeyName}-${movie.id}`}
+              className="text-white"
+            >
+              <MovieItem data={movie} />
             </div>
           ))}
         </div>

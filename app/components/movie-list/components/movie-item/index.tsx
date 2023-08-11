@@ -3,9 +3,9 @@ import { useRouter } from 'next/navigation';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { BiChevronDown } from 'react-icons/bi';
 
-import { GetMoviesRes } from '../../../api/movies/contracts/get-movies.res';
-import useInfoModal from '../../../hooks/user-info-modal';
-import FavoriteButton from '../../../components/favorite-button';
+import { GetMoviesRes } from '../../../../api/movies/contracts/get-movies.res';
+import useInfoModal from '../../../../hooks/user-info-modal';
+import FavoriteButton from '../../../../components/favorite-button';
 
 interface MovieItemProps {
   data?: GetMoviesRes;
@@ -18,7 +18,7 @@ const MovieItem = (props: MovieItemProps) => {
 
   const onPlayClick = useCallback(() => {
     router.push(`/watch/${data?.id}`);
-  }, [data?.id]);
+  }, [data?.id, router]);
 
   const onInfoClick = useCallback(() => {
     openModal(data?.id);

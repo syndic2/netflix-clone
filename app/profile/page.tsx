@@ -11,7 +11,7 @@ const Profile: React.FC = () => {
 
   const onSelectUserClick = useCallback(() => {
     router.push('/');
-  }, []);
+  }, [router]);
 
   return (
     <div className="flex items-center h-full justify-center">

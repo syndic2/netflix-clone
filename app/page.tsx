@@ -6,7 +6,7 @@ import useInfoModal from './hooks/user-info-modal';
 
 import Navbar from './components/navbar';
 import Billboard from './components/billboard';
-import MovieList from './movie-list';
+import MovieList from './components/movie-list';
 import InfoModal from './components/info-modal';
 
 const App = () => {
