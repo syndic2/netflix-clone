@@ -1,7 +1,6 @@
-"use client";
-
 import type { Metadata } from 'next';
-import { SessionProvider } from 'next-auth/react';
+
+import NextAuthProvider from './providers/next-auth-provider';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -19,9 +18,9 @@ export default function RootLayout(props: RootLayoutProps) {
   return (
     <html lang="en">
       <body>
-        <SessionProvider>
+        <NextAuthProvider>
           {children}
-        </SessionProvider>
+        </NextAuthProvider>
       </body>
     </html>
   );
